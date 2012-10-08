@@ -11,8 +11,8 @@
   NSString* replacement;
 }
 
-@property (retain) NSString* rule;
-@property (retain) NSString* replacement;
+@property (strong) NSString* rule;
+@property (strong) NSString* replacement;
 
 + (ActiveSupportInflectorRule*) rule:(NSString*)rule replacement:(NSString*)replacement;
 
@@ -24,7 +24,7 @@
 
 + (ActiveSupportInflectorRule*) rule:(NSString*)rule replacement:(NSString*)replacement {
   ActiveSupportInflectorRule* result;
-  if ((result = [[[self alloc] init] autorelease])) {
+  if ((result = [[self alloc] init])) {
     [result setRule:rule];
     [result setReplacement:replacement];
   }
@@ -117,11 +117,5 @@
   }  
 }
 
-- (void)dealloc {
-  [super dealloc];
-  [uncountableWords release];
-  [pluralRules release];
-  [singularRules release];
-}
 
 @end
